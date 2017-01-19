@@ -41,7 +41,7 @@
         android:inputType="textPersonName"
         android:ems="10"
         android:id="@+id/editAccount"
-        android:hint="account number"
+        android:hint="password"
         android:layout_below="@+id/editSerial"
         android:layout_alignStart="@+id/editSerial" />
 
@@ -64,7 +64,7 @@
         android:ems="10"
         android:layout_marginTop="25dp"
         android:id="@+id/editSerial"
-        android:hint="serial number"
+        android:hint="username"
         android:layout_below="@+id/textInfoHyperlink"
         android:layout_centerHorizontal="true" />
 
