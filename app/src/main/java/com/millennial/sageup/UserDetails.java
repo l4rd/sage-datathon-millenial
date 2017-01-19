@@ -3,6 +3,7 @@ package com.millennial.sageup;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 
 public class UserDetails extends AppCompatActivity {
     @Override
@@ -13,6 +14,10 @@ public class UserDetails extends AppCompatActivity {
         Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
         // setting Toolbar as Action Bar for the App
         setSupportActionBar(mToolbar);
-        mToolbar.setElevation(1);
     }
+    public void facebookClick(View view){}
+    public void twitterClick(View view){}
+    public void linkedinClick(View view){}
+    public void instagramClick(View view){}
+
 }
