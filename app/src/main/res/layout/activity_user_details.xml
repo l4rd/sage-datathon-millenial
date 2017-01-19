@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:weightSum="1">
@@ -10,7 +11,8 @@
         android:background="@color/colorPrimary"
         android:id= "@+id/toolbar"
         android:layout_height="60dp"
-        android:weightSum="1">
+        android:weightSum="1"
+        android:paddingTop="6dp">
         <ImageView
             android:layout_width="wrap_content"
             android:id="@+id/icon"
@@ -18,6 +20,72 @@
             android:layout_height="48dp"
             android:layout_weight="0.15" />
     </android.support.v7.widget.Toolbar>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            app:srcCompat="@drawable/default_person"
+            android:id="@+id/imageView2"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="40dp"
+            android:layout_height="110dp"
+            android:layout_width="110dp"/>
+
+        <TextView
+            android:text="John smith"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/imageView2"
+            android:layout_toEndOf="@+id/imageView2"
+            android:layout_marginStart="40dp"
+            android:id="@+id/textView"
+            android:textSize="30sp"
+            android:layout_marginTop="10dp" />
+
+        <ImageButton
+            app:srcCompat="@drawable/facebook"
+            android:layout_alignBottom="@+id/imageView2"
+            android:layout_toEndOf="@+id/imageView2"
+            android:layout_marginStart="17dp"
+            android:id="@+id/imageButtonFacebook"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:scaleType="centerCrop"
+            android:padding="0dp" />
+
+        <ImageButton
+            app:srcCompat="@drawable/twitter"
+            android:layout_marginStart="13dp"
+            android:id="@+id/imageButtonTwitter"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_alignTop="@+id/imageButtonFacebook"
+            android:layout_toEndOf="@+id/imageButtonFacebook"
+            android:scaleType="centerCrop"
+            android:padding="0dp" />
+
+        <ImageButton
+            app:srcCompat="@drawable/linkedin"
+            android:layout_marginStart="14dp"
+            android:id="@+id/imageButton4"
+            android:layout_height="35dp"
+            android:layout_alignTop="@+id/imageButtonTwitter"
+            android:layout_toEndOf="@+id/imageButtonTwitter"
+            android:padding="0dp"
+            android:scaleType="centerCrop"
+            android:layout_width="40dp" />
+
+        <ImageButton
+            app:srcCompat="@drawable/default_person"
+            android:id="@+id/imageButton"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_alignTop="@+id/imageButton4"
+            android:layout_toEndOf="@+id/imageButton4"
+            android:layout_marginStart="17dp" />
+    </RelativeLayout>
 
 
 </LinearLayout>
