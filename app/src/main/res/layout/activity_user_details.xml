@@ -83,15 +83,41 @@
             android:layout_centerHorizontal="true" />
 
         <TextView
+            android:text="My Company:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:id="@+id/textView6"
+            android:layout_below="@+id/textView4"
+            android:layout_toStartOf="@+id/imageView2" />
+
+        <TextView
+            android:text="@string/userdetailscompany"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView7"
+            android:layout_marginTop="7dp"
+            android:layout_below="@+id/textView6"
+            android:layout_alignStart="@+id/textView6" />
+
+        <TextView
+            android:text="read more "
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView8"
+            android:textColor="#0047b3"
+            android:layout_alignBottom="@+id/textView7"
+            android:layout_toEndOf="@+id/imageButton4" />
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/textView4"
             android:text="@string/userdetails"
             android:padding="0dp"
             android:textColor="@android:color/black"
-            android:layout_marginTop="23dp"
-            android:layout_below="@+id/textView"
-            android:layout_centerHorizontal="true" />
+            android:layout_marginTop="15dp"
+            android:layout_below="@+id/textView" />
 
     </RelativeLayout>
 
