@@ -76,7 +76,8 @@
             android:layout_toEndOf="@+id/imageButtonTwitter"
             android:padding="0dp"
             android:scaleType="centerCrop"
-            android:layout_width="40dp" />
+            android:layout_width="40dp"
+            android:onClick="sendMessage"/>
 
         <ImageButton
             app:srcCompat="@drawable/instagram"
