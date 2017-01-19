@@ -17,8 +17,8 @@
 
 
         <activity android:name=".UserDetails"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            android:label="">
+            android:theme="@style/AppTheme"
+            android:label="User Details">
         </activity>
 
         <activity android:name=".CreateAccount"
