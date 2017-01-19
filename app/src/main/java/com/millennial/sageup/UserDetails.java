@@ -11,9 +11,6 @@ public class UserDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_details);
 
-        Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
-        // setting Toolbar as Action Bar for the App
-        setSupportActionBar(mToolbar);
     }
     public void facebookClick(View view){}
     public void twitterClick(View view){}

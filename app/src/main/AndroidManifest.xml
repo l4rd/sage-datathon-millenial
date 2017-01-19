@@ -17,8 +17,7 @@
 
 
         <activity android:name=".UserDetails"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            android:label="">
+            android:label="User Details">
         </activity>
     </application>
 
