@@ -17,6 +17,7 @@
 
 
         <activity android:name=".UserDetails"
+            android:theme="@style/AppTheme"
             android:label="User Details">
         </activity>
     </application>

@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">SageUp</string>
-    <string name="userdetails">
-       "- Age: 24
+    <string name="userdetails">"
+        - Age: 24
         - Student accountant at Oxford University
         - Worked at Google inc.
         - Founder of MyDeli LTD
