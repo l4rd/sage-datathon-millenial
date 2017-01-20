@@ -96,7 +96,8 @@
             android:layout_toRightOf="@id/alignView"
             android:id="@+id/buttonCreate"
             android:textAlignment="center"
-            android:enabled="false" />
+            android:enabled="false"
+            android:onClick="createClick" />
 
     </RelativeLayout>
 

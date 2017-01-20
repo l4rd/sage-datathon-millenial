@@ -8,6 +8,7 @@ import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
@@ -18,6 +19,7 @@ import java.net.URL;
 public class SageParser {
 
     private static String BASE_URL = "http://ec2-52-56-92-81.eu-west-2.compute.amazonaws.com:3000";
+
     private static String GetJsonData(String endpoint) {
         HttpURLConnection con = null;
         InputStream is = null;
@@ -34,6 +36,7 @@ public class SageParser {
             con.setRequestMethod("GET");
             con.setDoInput(true);
             //con.setDoOutput(true); This converts the request into a POST, occasionally fixer.io will reject it.
+            con.setConnectTimeout(5000);
             con.connect();
             StringBuffer buffer = new StringBuffer();
 
@@ -71,12 +74,76 @@ public class SageParser {
         return null;
     }
 
+    private static String PostJsonData(String endpoint, String json) {
+        HttpURLConnection con = null;
+        InputStream is = null;
 
+        // Append the users favourite currency to get a URL string.
+        StringBuilder apiString = new StringBuilder();
+        apiString.append(BASE_URL);
+        apiString.append(endpoint);
+        String urlString = apiString.toString();
+
+        try {
+
+            con = (HttpURLConnection) (new URL(urlString)).openConnection();
+            con.setRequestMethod("POST");
+            con.setRequestProperty("Content-Type", "application/json");
+            //con.setRequestProperty("Accept", "application/json");
+            //con.setDoInput(true);
+            con.setConnectTimeout(5000);
+            con.setDoOutput(true); //This converts the request into a POST, occasionally fixer.io will reject it.
+
+
+            String body = json;
+
+            OutputStream os = con.getOutputStream();
+            os.write(body.getBytes());
+            os.flush();
+
+            StringBuffer buffer = new StringBuffer();
+
+            // Get the status code and check whether it is an error.
+            // Trying to access the input stream from a 400+ error results in a crash.
+            int status = con.getResponseCode();
+
+            Log.d("status", String.valueOf(status));
+            if(status >= 400) {
+                is = con.getErrorStream();
+            } else {
+                is = con.getInputStream();
+            }
+
+            BufferedReader br = new BufferedReader(new InputStreamReader(is));
+            String line = null;
+
+            // Read the JSON data into a string buffer.
+            while ((line = br.readLine()) != null) {
+                buffer.append(line + "rn");
+            }
+
+            // Close the connection to the API.
+            is.close();
+            con.disconnect();
+
+            // Return the string of JSON data.
+            return buffer.toString();
+        } catch(Throwable t) {
+            t.printStackTrace();
+        } finally {
+            try { is.close(); } catch(Throwable t) {}
+            try { con.disconnect(); } catch(Throwable t) {}
+        }
+
+        // If the request fails for any reason then return null.
+        return null;
+    }
 
     public static Boolean CheckUserAndSerial(String user, String serial) throws JSONException {
         String endpoint = "/checkSerial/" + user.toLowerCase() + "/" + serial;
         String json = GetJsonData(endpoint);
 
+        Log.d("json", json);
         // We create our JSONObject from the data
         JSONObject jObj = new JSONObject(json);
 
@@ -86,12 +153,33 @@ public class SageParser {
 
         Boolean serialExists = Boolean.parseBoolean(getString("serialexists", jObj));
 
-        if(userExists && serialExists) {
+        Log.d("exists", userExists.toString());
+        Log.d("exists", serialExists.toString());
+
+        // We want the username to be unique and the serial should be a known serial to Sage.
+        if(!userExists && serialExists) {
             return true;
         } else {
             return false;
         }
 
+    }
+
+    public static Boolean PostNewAccount(String username, String password, String serial) throws JSONException {
+
+        //String json = "{ 'username': '" + username + "', 'password': '" + password + "', 'serial': '" + serial + "'}";
+        //String json = "{ \'username\': \'" + username + "\', \'password\': \'" + password + "\', \'serial\': \'" + serial + "\'}";
+        String json = "{\"username\": \"" + username + "\", \"password\": \"" + password + "\", \"serial_number\": \"" + serial + "\"}";
+        String returned = PostJsonData("/User", json);
+
+        // We create our JSONObject from the data
+        JSONObject jObj = new JSONObject(returned);
+
+        // Get the rates object from the JSON.
+
+        Boolean userCreated = Boolean.parseBoolean(getString("created", jObj));
+
+        return userCreated;
     }
 
     private static JSONObject getObject(String tagName, JSONObject jObj)  throws JSONException {

@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 
 import org.json.JSONException;
 
+import static android.widget.Toast.LENGTH_LONG;
 import static android.widget.Toast.LENGTH_SHORT;
 
 /**
@@ -59,6 +61,19 @@ public class CreateAccount extends AppCompatActivity {
             Toast.makeText(this, "Password is too short.", LENGTH_SHORT).show();
         }
 
+    }
+
+    public void createClick(View v) {
+        String usernameParam = username.getText().toString();
+        String passwordParam = password.getText().toString();
+        String serialParam = serial.getText().toString();
+
+        String[] params = new String[3];
+        params[0] = usernameParam;
+        params[1] = passwordParam;
+        params[2] = serialParam;
+        JSONCreateAccountTask task = new JSONCreateAccountTask();
+        task.execute(params);
     }
 
     private void initialiseTextWatchers() {
@@ -146,6 +161,34 @@ public class CreateAccount extends AppCompatActivity {
 
             try {
                 valid = SageParser.CheckUserAndSerial(params[0].first, params[0].second);
+                Log.d("try", valid.toString());
+            } catch(JSONException e) {
+                valid = false;
+            } finally {
+                Log.d("finally", valid.toString());
+                return valid;
+            }
+        }
+
+        @Override
+        protected void onPostExecute(Boolean valid) {
+            super.onPostExecute(valid);
+            Log.d("postExecute", valid.toString());
+            if(valid) {
+                create.setEnabled(true);
+                check.setEnabled(false);
+            }
+        }
+
+    }
+
+    private class JSONCreateAccountTask extends AsyncTask<String[], Void, Boolean> {
+        @Override
+        protected Boolean doInBackground(String[]... params) {
+            Boolean valid = false;
+
+            try {
+                valid = SageParser.PostNewAccount(params[0][0], params[0][1], params[0][2]);
             } catch(JSONException e) {
                 valid = false;
             } finally {
@@ -158,11 +201,14 @@ public class CreateAccount extends AppCompatActivity {
             super.onPostExecute(valid);
 
             if(valid) {
-                create.setEnabled(true);
-                check.setEnabled(false);
+                Toast.makeText(CreateAccount.this, "The account was created!", LENGTH_LONG).show();
+                finish();
+            } else {
+                Toast.makeText(CreateAccount.this, "The account could not be created.", LENGTH_LONG).show();
             }
         }
-
     }
+
+    //private class JSONGetSectorTask extends AsyncTask<String, Void, >
 }
 
