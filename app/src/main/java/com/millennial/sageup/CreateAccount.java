@@ -16,6 +16,8 @@ import android.widget.Toast;
 
 import org.json.JSONException;
 
+import java.util.Map;
+
 import static android.widget.Toast.LENGTH_LONG;
 import static android.widget.Toast.LENGTH_SHORT;
 
@@ -177,6 +179,9 @@ public class CreateAccount extends AppCompatActivity {
             if(valid) {
                 create.setEnabled(true);
                 check.setEnabled(false);
+                JSONGetSectorTask sectors = new JSONGetSectorTask();
+                sectors.execute();
+
             }
         }
 
@@ -209,6 +214,34 @@ public class CreateAccount extends AppCompatActivity {
         }
     }
 
-    //private class JSONGetSectorTask extends AsyncTask<String, Void, >
+    private class JSONGetSectorTask extends AsyncTask<Void, Void, SectorData> {
+
+        @Override
+        protected SectorData doInBackground(Void... params) {
+
+            SectorData sectorData = new SectorData();
+
+            try {
+                Log.d("sector", "Worth a try");
+                sectorData = SageParser.GetSectorData();
+
+            } catch(JSONException e) {
+                Log.d("sector", "big fail");
+                sectorData = null;
+            } finally {
+                return sectorData;
+            }
+
+        }
+
+        @Override
+        protected void onPostExecute(SectorData sectorData) {
+            super.onPostExecute(sectorData);
+
+            for(Industry i : sectorData.getMajorIndustry()) {
+                Log.d("Industry", i.getSectorName());
+            }
+        }
+    }
 }
 

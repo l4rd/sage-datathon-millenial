@@ -1,5 +1,8 @@
 package com.millennial.sageup;
 
+import android.util.Pair;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -8,10 +11,10 @@ import java.util.HashMap;
 
 public class SectorData {
 
-    HashMap<Integer, String> majorIndustry;
-    HashMap<Integer, String> subIndustry;
+    ArrayList<Industry> majorIndustry;
+    ArrayList<Industry> subIndustry;
 
-    public SectorData(HashMap<Integer, String> majorIndustry, HashMap<Integer, String> subIndustry) {
+    public SectorData(ArrayList<Industry> majorIndustry, ArrayList<Industry> subIndustry) {
         this.majorIndustry = majorIndustry;
         this.subIndustry = subIndustry;
     }
@@ -20,19 +23,27 @@ public class SectorData {
     }
 
 
-    public HashMap<Integer, String> getMajorIndustry() {
+    public ArrayList<Industry> getMajorIndustry() {
         return majorIndustry;
     }
 
-    public void setMajorIndustry(HashMap<Integer, String> majorIndustry) {
+    public void setMajorIndustry(ArrayList<Industry> majorIndustry) {
         this.majorIndustry = majorIndustry;
     }
 
-    public HashMap<Integer, String> getSubIndustry() {
+    public ArrayList<Industry> getSubIndustry() {
         return subIndustry;
     }
 
-    public void setSubIndustry(HashMap<Integer, String> subIndustry) {
+    public void setSubIndustry(ArrayList<Industry> subIndustry) {
         this.subIndustry = subIndustry;
+    }
+
+    public void addMajorIndustry(Industry majorIndustry) {
+        this.majorIndustry.add(majorIndustry);
+    }
+
+    public void addSubIndustry(Industry subIndustry) {
+        this.subIndustry.add(subIndustry);
     }
 }
