@@ -259,6 +259,20 @@ public class SageParser {
         return industries;
     }
 
+    public static String CheckLoginDetails(String username, String password) throws JSONException {
+        String json = "{\"username\": \"" + username + "\", \"password\": \"" + password + "\"}";
+        String returned = PostJsonData("/Login", json);
+
+        // We create our JSONObject from the data
+        JSONObject jObj = new JSONObject(returned);
+
+        // Get the rates object from the JSON.
+
+        String serial = getString("serial", jObj);
+
+        return serial;
+    }
+
 // new comment
     private static JSONObject getObject(String tagName, JSONObject jObj)  throws JSONException {
         JSONObject subObj = jObj.getJSONObject(tagName);

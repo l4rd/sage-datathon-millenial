@@ -7,7 +7,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.util.Pair;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -23,7 +22,6 @@ import android.widget.Toast;
 import org.json.JSONException;
 
 import java.util.ArrayList;
-import java.util.Map;
 
 import static android.widget.Toast.LENGTH_LONG;
 import static android.widget.Toast.LENGTH_SHORT;
@@ -47,7 +45,7 @@ public class CreateAccount extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_account);
         username = (EditText) findViewById(R.id.editUsername);
-        serial = (EditText) findViewById(R.id.editSerial);
+        serial = (EditText) findViewById(R.id.editUsername);
         password = (EditText) findViewById(R.id.editPassword);
         repeat = (EditText) findViewById(R.id.editRepeat);
         create = (Button) findViewById(R.id.buttonCreate);
