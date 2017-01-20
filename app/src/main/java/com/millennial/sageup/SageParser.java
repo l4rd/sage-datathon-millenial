@@ -230,11 +230,8 @@ public class SageParser {
             Log.d("single entity serial: ", mentorlist.get(1).serial);
             Log.d("JSON: ", json);
 
-
-        if (mentorlist.size() > 0) {
             return mentorlist;
-        }
-        return null;
+
     }
 
 // new comment

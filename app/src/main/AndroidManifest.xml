@@ -45,6 +45,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.millennial.sageup.MainActivity"/>
         </activity>
+
+        <activity android:name=".DetailMentorsActivity"
+            android:theme="@style/AppTheme"
+            android:label="Mentor details">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.millennial.sageup.MasterMentorsActivity"/>
+        </activity>
     </application>
 
 </manifest>
