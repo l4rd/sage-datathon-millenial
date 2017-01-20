@@ -9,11 +9,15 @@ import android.view.MenuItem;
 import android.view.View;
 
 public class MenuActivity extends AppCompatActivity {
+    public static String serial;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
+        // grab the id from the master activity
+        Intent intent = getIntent();
+        serial = intent.getStringExtra("serial");
     }
 // new test
     public void myaccountClick(View view) {

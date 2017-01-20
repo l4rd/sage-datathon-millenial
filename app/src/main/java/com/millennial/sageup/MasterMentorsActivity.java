@@ -30,7 +30,7 @@ public class MasterMentorsActivity extends AppCompatActivity {
 
 
         JSONGetMentorsTask task = new JSONGetMentorsTask();
-        Pair<String, Integer> pair = new Pair<>("E963869", 10000);
+        Pair<String, Integer> pair = new Pair<>(MenuActivity.serial, 10000);
         task.execute(pair);
 
         item = (ListView) findViewById(R.id.listofmentors);
