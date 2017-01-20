@@ -2,6 +2,7 @@ package com.millennial.sageup;
 
 import android.util.Log;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -11,6 +12,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 
 /**
  * Created by TehLe on 19/01/2017.
@@ -180,6 +182,28 @@ public class SageParser {
         Boolean userCreated = Boolean.parseBoolean(getString("created", jObj));
 
         return userCreated;
+    }
+
+    public static SectorData GetSectorData() throws JSONException {
+        String endpoint = "/sectors";
+        String json = GetJsonData(endpoint);
+        JSONArray jArr = new JSONArray(json);
+        SectorData sectorData = new SectorData();
+
+        ArrayList<Industry> industries = new ArrayList<>();
+        for(int i = 0; i < jArr.length(); i++) {
+            JSONObject sectorObj = jArr.getJSONObject(i);
+            String sectorId = getString("sectorid", sectorObj);
+            String sectorName = getString("sectorname", sectorObj);
+            Log.d("sector", sectorId);
+            Log.d("sector", sectorName);
+            Industry ind = new Industry(sectorId, sectorName);
+            industries.add(ind);
+
+        }
+
+        sectorData.setMajorIndustry(industries);
+        return sectorData;
     }
 
     private static JSONObject getObject(String tagName, JSONObject jObj)  throws JSONException {
