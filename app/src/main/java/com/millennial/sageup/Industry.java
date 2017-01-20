@@ -33,4 +33,9 @@ public class Industry {
     public void setSectorName(String sectorName) {
         this.sectorName = sectorName;
     }
+
+    @Override
+    public String toString() {
+        return sectorName;
+    }
 }

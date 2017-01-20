@@ -4,14 +4,19 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.util.Pair;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import org.json.JSONException;
@@ -238,9 +243,39 @@ public class CreateAccount extends AppCompatActivity {
         protected void onPostExecute(SectorData sectorData) {
             super.onPostExecute(sectorData);
 
-            for(Industry i : sectorData.getMajorIndustry()) {
-                Log.d("Industry", i.getSectorName());
-            }
+            AlertDialog.Builder adBuild = new AlertDialog.Builder(CreateAccount.this);
+            LayoutInflater inflater = LayoutInflater.from(CreateAccount.this);
+            View cusDetails = inflater.inflate(R.layout.company_details, null);
+
+            adBuild.setTitle("Update Details");
+            adBuild.setView(cusDetails);
+
+            final Spinner spinMajor = (Spinner) cusDetails.findViewById(R.id.spinnerMajor);
+            final Spinner spinSub = (Spinner) cusDetails.findViewById(R.id.spinnerSub);
+
+            ArrayAdapter<Industry> adapter = new ArrayAdapter<Industry>(CreateAccount.this, android.R.layout.simple_spinner_item, sectorData.getMajorIndustry());
+
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+            spinMajor.setAdapter(adapter);
+
+
+
+            spinMajor.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    Industry ind = (Industry) parent.getSelectedItem();
+
+                }
+            });
+
+            adBuild.setPositiveButton("Save", null);
+            adBuild.setNegativeButton("Cancel", null);
+
+            AlertDialog dialog = adBuild.create();
+
+            dialog.show();
         }
     }
 }
