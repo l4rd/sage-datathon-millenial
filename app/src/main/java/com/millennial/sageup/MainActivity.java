@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity{
 
         AlertDialog.Builder adBuilder = new AlertDialog.Builder(MainActivity.this);
         adBuilder.setTitle("Login Help");
-        adBuilder.setMessage("This will contain the help for the login page.");
+        adBuilder.setMessage(getResources().getString(R.string.home_help));
         adBuilder.setPositiveButton("Close", null);
         AlertDialog dialog = adBuilder.create();
         dialog.show();
@@ -69,6 +69,7 @@ public class MainActivity extends AppCompatActivity{
             super.onPostExecute(serial);
 
             if(serial != null) {
+                Toast.makeText(MainActivity.this, "Logging in...", LENGTH_LONG).show();
                 Intent intent = new Intent(MainActivity.this, MenuActivity.class);
                 intent.putExtra("serial", serial);
                 startActivity(intent);

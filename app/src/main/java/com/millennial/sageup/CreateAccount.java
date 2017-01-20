@@ -45,7 +45,7 @@ public class CreateAccount extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_account);
         username = (EditText) findViewById(R.id.editUsername);
-        serial = (EditText) findViewById(R.id.editUsername);
+        serial = (EditText) findViewById(R.id.editSerial);
         password = (EditText) findViewById(R.id.editPassword);
         repeat = (EditText) findViewById(R.id.editRepeat);
         create = (Button) findViewById(R.id.buttonCreate);
@@ -186,7 +186,8 @@ public class CreateAccount extends AppCompatActivity {
             if(valid) {
                 create.setEnabled(true);
                 check.setEnabled(false);
-
+            } else {
+                Toast.makeText(CreateAccount.this, "Username and/or serial incorrect.", LENGTH_SHORT).show();
             }
         }
 

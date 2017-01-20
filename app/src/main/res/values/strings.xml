@@ -8,4 +8,6 @@
         - Read my CV "</string>
 
      <string name="userdetailscompany">"I founded my Deli ltd in 2014 while studying accountancy at University and..."</string>
+
+    <string name="home_help">If this is your first time using SageUp then you need to create an account using the "create account" button.\n\nIn the "create account" screen, you can link your SageUp account with your Sage 50 serial number to personalise your experience.\n\nYou will have the opportunity to update your sector, sub sector and your turnover after you have created your account.</string>
 </resources>
