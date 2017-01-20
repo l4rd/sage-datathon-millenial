@@ -45,18 +45,6 @@
         android:layout_below="@+id/editSerial"
         android:layout_alignStart="@+id/editSerial" />
 
-    <Button
-        android:text="sign in"
-        android:layout_width="100dp"
-        android:layout_height="40dp"
-        android:id="@+id/buttonLogin"
-        android:background="#9941A940"
-        android:textColor="@android:color/white"
-        android:textSize="24sp"
-        android:layout_below="@+id/editAccount"
-        android:layout_centerHorizontal="true"
-        android:onClick="loginClick"/>
-
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -87,5 +75,17 @@
         android:layout_below="@+id/textTitle"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="13dp" />
+
+    <Button
+        android:text="sign in"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:id="@+id/buttonLogin"
+        android:background="#9941A940"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        android:onClick="loginClick"
+        android:layout_below="@+id/editAccount"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

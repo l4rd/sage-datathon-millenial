@@ -17,10 +17,17 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".MenuActivity"
+            android:theme="@style/AppTheme"
+            android:label="Main menu">
+        </activity>
 
         <activity android:name=".UserDetails"
             android:theme="@style/AppTheme"
             android:label="User Details">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.millennial.sageup.MenuActivity"/>
         </activity>
 
         <activity android:name=".CreateAccount"
