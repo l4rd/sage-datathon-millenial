@@ -11,9 +11,6 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-/**
- * Created by TehLe on 19/01/2017.
- */
 
 public class SageParser {
 
@@ -93,6 +90,13 @@ public class SageParser {
         }
 
     }
+
+    public static void GetUserMentors(String user, String serial) throws JSONException {
+        // todo: make this parse
+
+    }
+
+
 
     private static JSONObject getObject(String tagName, JSONObject jObj)  throws JSONException {
         JSONObject subObj = jObj.getJSONObject(tagName);
