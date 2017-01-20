@@ -48,4 +48,16 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="15dp" />
 
+    <Button
+        android:text="Alerts (0)"
+        android:layout_height="wrap_content"
+        android:id="@+id/alertButton"
+        android:layout_width="300dp"
+        android:background="#BB41A940"
+        android:textColor="@android:color/white"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/button"
+        android:enabled="false"
+        android:onClick="alertsClick"/>
+
 </RelativeLayout>

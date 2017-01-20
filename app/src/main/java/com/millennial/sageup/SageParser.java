@@ -273,6 +273,22 @@ public class SageParser {
         return serial;
     }
 
+    public static ArrayList<String> GetAlertMessage(String serial) throws JSONException {
+        String endpoint = "/alerts/" + serial;
+        String returned = GetJsonData(endpoint);
+
+        JSONArray jArr = new JSONArray(returned);
+
+        ArrayList<String> alertsBack = new ArrayList<>();
+
+        for(int i = 0; i < jArr.length(); i++) {
+            JSONObject jObj = jArr.getJSONObject(i);
+            String message = getString("message", jObj);
+            alertsBack.add(message);
+        }
+
+        return alertsBack;
+    }
 // new comment
     private static JSONObject getObject(String tagName, JSONObject jObj)  throws JSONException {
         JSONObject subObj = jObj.getJSONObject(tagName);

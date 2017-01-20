@@ -28,16 +28,14 @@ public class UserDetails extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.signout_menu, menu);
         return true;
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == R.id.action_sort) {
-        // go back an activity
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-
-        NavUtils.navigateUpTo(this, intent );
-        return true;
+        int id = item.getItemId();
+        if (id == R.id.action_sort) {
+            finish();
+            return true;
         }
-        return false;
+        return super.onOptionsItemSelected(item);
     }
 }

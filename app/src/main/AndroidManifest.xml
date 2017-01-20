@@ -19,12 +19,15 @@
 
         <activity android:name=".MenuActivity"
             android:theme="@style/AppTheme"
-            android:label="Main menu">
+            android:label="Main menu"
+            android:launchMode="singleTop">
         </activity>
 
         <activity android:name=".UserDetails"
             android:theme="@style/AppTheme"
-            android:label="User Details">
+            android:label="User Details"
+            android:parentActivityName="com.millennial.sageup.MenuActivity" >
+            <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.millennial.sageup.MenuActivity"/>
@@ -32,7 +35,8 @@
 
         <activity android:name=".MasterMentorsActivity"
             android:theme="@style/AppTheme"
-            android:label="My mentors">
+            android:label="My mentors"
+            android:parentActivityName="com.millennial.sageup.MenuActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.millennial.sageup.MenuActivity"/>
