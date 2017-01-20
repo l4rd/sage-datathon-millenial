@@ -16,8 +16,6 @@ import android.widget.Toast;
 
 import org.json.JSONException;
 
-import java.util.Map;
-
 import static android.widget.Toast.LENGTH_LONG;
 import static android.widget.Toast.LENGTH_SHORT;
 
@@ -74,8 +72,8 @@ public class CreateAccount extends AppCompatActivity {
         params[0] = usernameParam;
         params[1] = passwordParam;
         params[2] = serialParam;
-        JSONCreateAccountTask task = new JSONCreateAccountTask();
-        task.execute(params);
+       // JSONCreateAccountTask task = new JSONCreateAccountTask();
+       // task.execute(params);
     }
 
     private void initialiseTextWatchers() {
@@ -179,15 +177,12 @@ public class CreateAccount extends AppCompatActivity {
             if(valid) {
                 create.setEnabled(true);
                 check.setEnabled(false);
-                JSONGetSectorTask sectors = new JSONGetSectorTask();
-                sectors.execute();
-
             }
         }
 
     }
 
-    private class JSONCreateAccountTask extends AsyncTask<String[], Void, Boolean> {
+   /* private class JSONCreateAccountTask extends AsyncTask<String[], Void, Boolean> {
         @Override
         protected Boolean doInBackground(String[]... params) {
             Boolean valid = false;
@@ -214,34 +209,7 @@ public class CreateAccount extends AppCompatActivity {
         }
     }
 
-    private class JSONGetSectorTask extends AsyncTask<Void, Void, SectorData> {
-
-        @Override
-        protected SectorData doInBackground(Void... params) {
-
-            SectorData sectorData = new SectorData();
-
-            try {
-                Log.d("sector", "Worth a try");
-                sectorData = SageParser.GetSectorData();
-
-            } catch(JSONException e) {
-                Log.d("sector", "big fail");
-                sectorData = null;
-            } finally {
-                return sectorData;
-            }
-
-        }
-
-        @Override
-        protected void onPostExecute(SectorData sectorData) {
-            super.onPostExecute(sectorData);
-
-            for(Industry i : sectorData.getMajorIndustry()) {
-                Log.d("Industry", i.getSectorName());
-            }
-        }
-    }
+    //private class JSONGetSectorTask extends AsyncTask<String, Void, >
+    */
 }
 

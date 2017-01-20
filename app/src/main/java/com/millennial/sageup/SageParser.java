@@ -206,6 +206,25 @@ public class SageParser {
         return sectorData;
     }
 
+    public static Mentor GetUserMentors(String sector, int revenue) throws JSONException {
+        // todo: make this parse
+        //  /getmontors/sector/reventue
+        //  /sectors returns array of objects
+        Mentor mentor = new Mentor();
+        String endpoint = "/getmentors/" + sector + "/" + revenue;
+        String json = GetJsonData(endpoint);
+
+
+
+
+        Log.d("JSON: ", json);
+
+
+
+        return null;
+    }
+
+
     private static JSONObject getObject(String tagName, JSONObject jObj)  throws JSONException {
         JSONObject subObj = jObj.getJSONObject(tagName);
         return subObj;
