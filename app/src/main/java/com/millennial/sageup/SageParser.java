@@ -91,9 +91,19 @@ public class SageParser {
 
     }
 
-    public static void GetUserMentors(String user, String serial) throws JSONException {
+    public static Mentor GetUserMentors(String sector, int revenue) throws JSONException {
         // todo: make this parse
+        //  /getmontors/sector/reventue
+        //  /sectors returns array of objects
+        String endpoint = "/getmentors/" + sector + "/" + revenue;
+        String json = GetJsonData(endpoint);
 
+
+        Log.d("JSON: ", json);
+
+
+
+        return null;
     }
 
 
