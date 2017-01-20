@@ -23,10 +23,7 @@ public class DetailMentorsActivity extends AppCompatActivity {
         int placelong = Integer.parseInt(message);
 
         Mentor mentor = MasterMentorsActivity.mentor.get(placelong);
-
         TextView name = (TextView) findViewById(R.id.textViewMentorName);
         name.setText(mentor.serial);
-
-
     }
 }
