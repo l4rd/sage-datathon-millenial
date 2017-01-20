@@ -206,21 +206,34 @@ public class SageParser {
         return sectorData;
     }
 
-    public static Mentor GetUserMentors(String sector, int revenue) throws JSONException {
-        // todo: make this parse
+    public static ArrayList<Mentor> GetUserMentors(String sector, int revenue) throws JSONException {
         //  /getmontors/sector/reventue
         //  /sectors returns array of objects
-        Mentor mentor = new Mentor();
-        String endpoint = "/getmentors/" + sector + "/" + revenue;
-        String json = GetJsonData(endpoint);
 
 
+            String endpoint = "/getmentors/" + sector + "/" + revenue;
+            String json = GetJsonData(endpoint);
+
+            JSONArray jArr = new JSONArray(json);
 
 
-        Log.d("JSON: ", json);
+            ArrayList<Mentor> mentorlist = new ArrayList<>();
+            for (int i = 0; i < jArr.length(); i++) {
+                JSONObject sectorObj = jArr.getJSONObject(i);
+                Mentor mentor = new Mentor();
+                mentor.serial = getString("serial", sectorObj);
+                mentor.sector = getString("MajorIndustrySector", sectorObj);
+
+                mentorlist.add(mentor);
+            }
+
+            Log.d("single entity serial: ", mentorlist.get(1).serial);
+            Log.d("JSON: ", json);
 
 
-
+        if (mentorlist.size() > 0) {
+            return mentorlist;
+        }
         return null;
     }
 
