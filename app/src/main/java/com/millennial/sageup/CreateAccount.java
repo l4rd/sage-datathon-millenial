@@ -1,5 +1,6 @@
 package com.millennial.sageup;
 
+import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -21,6 +22,7 @@ import android.widget.Toast;
 
 import org.json.JSONException;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 import static android.widget.Toast.LENGTH_LONG;
@@ -38,6 +40,8 @@ public class CreateAccount extends AppCompatActivity {
     EditText repeat;
     Button create;
     Button check;
+    ArrayList<Industry> subGlobalList = new ArrayList<>();
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -184,8 +188,6 @@ public class CreateAccount extends AppCompatActivity {
             if(valid) {
                 create.setEnabled(true);
                 check.setEnabled(false);
-                JSONGetSectorTask sectors = new JSONGetSectorTask();
-                sectors.execute();
 
             }
         }
@@ -212,7 +214,8 @@ public class CreateAccount extends AppCompatActivity {
 
             if(valid) {
                 Toast.makeText(CreateAccount.this, "The account was created!", LENGTH_LONG).show();
-                finish();
+                JSONGetSectorTask sectors = new JSONGetSectorTask();
+                sectors.execute();
             } else {
                 Toast.makeText(CreateAccount.this, "The account could not be created.", LENGTH_LONG).show();
             }
@@ -257,21 +260,61 @@ public class CreateAccount extends AppCompatActivity {
 
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
+            subGlobalList = sectorData.getSubIndustry();
+
+            ArrayList<Industry> filterList = new ArrayList<>();
+
+            for(Industry i : subGlobalList) {
+                if(i.sectorMain.equals("A1")) {
+                    filterList.add(i);
+                }
+            }
+            ArrayAdapter<Industry> adapterTwo = new ArrayAdapter<Industry>(CreateAccount.this, android.R.layout.simple_spinner_item, filterList);
+            Log.d("sectorData", String.valueOf(sectorData.getSubIndustry().size()));
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             spinMajor.setAdapter(adapter);
-
-
-
-            spinMajor.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            adapterTwo.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            spinSub.setAdapter(adapterTwo);
+            spinMajor.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
                 @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
                     Industry ind = (Industry) parent.getSelectedItem();
 
+                    ArrayList<Industry> chosenList = new ArrayList<Industry>();
+                    for(Industry i : subGlobalList) {
+                        if(i.getSectorMain().equals(ind.getSectorId())) {
+                            chosenList.add(i);
+                        }
+                    }
+
+                    ArrayAdapter<Industry> adapterThree = new ArrayAdapter<Industry>(parent.getContext(), android.R.layout.simple_spinner_item, chosenList);
+                    spinSub.setAdapter(adapterThree);
                 }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+
+                }
+
             });
 
-            adBuild.setPositiveButton("Save", null);
-            adBuild.setNegativeButton("Cancel", null);
+            adBuild.setPositiveButton("Save", new DialogInterface.OnClickListener() {
+
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Toast.makeText(CreateAccount.this, "Details updated!", LENGTH_SHORT).show();
+                    finish();
+                }
+            });
+            adBuild.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    finish();
+                }
+            });
 
             AlertDialog dialog = adBuild.create();
 

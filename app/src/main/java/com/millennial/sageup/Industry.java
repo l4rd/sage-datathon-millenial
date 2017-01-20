@@ -8,6 +8,7 @@ public class Industry {
 
     String sectorId;
     String sectorName;
+    String sectorMain;
 
 
     public Industry(String sectorId, String sectorName) {
@@ -37,5 +38,13 @@ public class Industry {
     @Override
     public String toString() {
         return sectorName;
+    }
+
+    public String getSectorMain() {
+        return sectorMain;
+    }
+
+    public void setSectorMain(String sectorMain) {
+        this.sectorMain = sectorMain;
     }
 }
