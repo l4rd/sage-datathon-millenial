@@ -18,7 +18,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/button"
         android:layout_width="300dp"
-        android:background="#9941A940"
+        android:background="#BB41A940"
         android:textColor="@android:color/white"
         android:layout_alignParentBottom="true"
         android:layout_alignStart="@+id/button3"
@@ -29,19 +29,20 @@
         android:layout_height="wrap_content"
         android:id="@+id/button3"
         android:layout_width="300dp"
-        android:background="#9941A940"
+        android:background="#BB41A940"
         android:textColor="@android:color/white"
         android:text="my mentors"
         android:layout_above="@+id/button"
         android:layout_alignStart="@+id/imageView"
-        android:layout_marginBottom="11dp" />
+        android:layout_marginBottom="11dp"
+        android:onClick="mentorsClick"/>
 
     <Button
         android:text="Business live"
         android:layout_height="wrap_content"
         android:id="@+id/button2"
         android:layout_width="300dp"
-        android:background="#9941A940"
+        android:background="#BB41A940"
         android:textColor="@android:color/white"
         android:layout_above="@+id/button3"
         android:layout_centerHorizontal="true"

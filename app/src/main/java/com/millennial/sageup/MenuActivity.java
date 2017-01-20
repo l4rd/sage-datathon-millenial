@@ -21,6 +21,11 @@ public class MenuActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void mentorsClick(View view) {
+        Intent intent = new Intent(this, MasterMentorsActivity.class);
+        startActivity(intent);
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.signout_menu, menu);

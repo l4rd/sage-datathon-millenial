@@ -30,6 +30,14 @@
                 android:value="com.millennial.sageup.MenuActivity"/>
         </activity>
 
+        <activity android:name=".MasterMentorsActivity"
+            android:theme="@style/AppTheme"
+            android:label="My mentors">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.millennial.sageup.MenuActivity"/>
+        </activity>
+
         <activity android:name=".CreateAccount"
             android:theme="@style/AppTheme"
             android:label="Create Account">
