@@ -202,7 +202,9 @@ public class SageParser {
 
         }
 
+        ArrayList<Industry> indSub = GetSubSectors();
         sectorData.setMajorIndustry(industries);
+        sectorData.setSubIndustry(indSub);
         return sectorData;
     }
 
@@ -232,6 +234,29 @@ public class SageParser {
 
             return mentorlist;
 
+    }
+
+    public static ArrayList<Industry> GetSubSectors() throws JSONException {
+        String endpoint = "/2dsectors/";
+        String json = GetJsonData(endpoint);
+        Log.d("HERE6", json);
+        JSONArray jArr = new JSONArray(json);
+
+        ArrayList<Industry> industries = new ArrayList<>();
+
+        for(int i = 0; i < jArr.length(); i++) {
+            JSONObject sectorObj = jArr.getJSONObject(i);
+            String sectorId = getString("sectorid", sectorObj);
+            String sectorName = getString("sectorname", sectorObj);
+            String sectorMain = getString("major_sector", sectorObj);
+            Log.d("sector", sectorId);
+            Log.d("sector", sectorName);
+            Industry ind = new Industry(sectorId, sectorName);
+            ind.setSectorMain(sectorMain);
+            industries.add(ind);
+        }
+
+        return industries;
     }
 
 // new comment
