@@ -15,7 +15,7 @@ public class MenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_menu);
 
     }
-
+// new test
     public void myaccountClick(View view) {
         Intent intent = new Intent(this, UserDetails.class);
         startActivity(intent);

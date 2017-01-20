@@ -8,10 +8,10 @@ import android.util.Log;
 
 import org.json.JSONException;
 
-/**
- * Created by cameron on 20/01/2017.
- */
+import java.util.ArrayList;
 
+
+// new comment
 public class MasterMentorsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,11 +29,11 @@ public class MasterMentorsActivity extends AppCompatActivity {
 
         @Override
         protected Mentor doInBackground(Pair<String, Integer>... params) {
-            Mentor mentor;
+            ArrayList<Mentor> mentor;
 
             try {
                 mentor = SageParser.GetUserMentors(params[0].first, params[0].second);
-                return mentor;
+
             } catch(JSONException e) {}
             return null;
         }

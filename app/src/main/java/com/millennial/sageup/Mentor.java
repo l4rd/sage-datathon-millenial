@@ -6,6 +6,9 @@ package com.millennial.sageup;
 
 public class Mentor {
     public String name;
+    public String serial;
+    public int sales;
+    public String sector;
 
     public Mentor(){}
 }
